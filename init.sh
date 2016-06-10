@@ -4,9 +4,15 @@ echo "Grabbing Assignment Files"
 echo "ID: $ASSIGNMENTID"
 
 cd /workspace
-export URL="$(node /root/.novajs/assignment.js)"
-echo "URL: $URL"
-git clone --depth=1 "$URL"
+if [[ ! "$(cat .delete-me-to-regen-assignment)" == "true"]]; then
+  export URL="$(node /root/.novajs/assignment.js)"
+  echo "URL: $URL"
+  git clone --depth=1 "$URL" .
+  echo "true" > .delete-me-to-regen-assignment
+else
+  echo "Already Downloaded Assignment"
+fi
+
 cd /root
 
 echo "Spawning supervisord to watch over cloud9 process."
