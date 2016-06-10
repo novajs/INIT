@@ -4,7 +4,8 @@ echo "Grabbing Assignment Files"
 echo "ID: $ASSIGNMENTID"
 
 cd /workspace
-if [[ ! "$(cat .delete-me-to-regen-assignment)" == "true"]]; then
+if [ ! "$(cat .delete-me-to-regen-assignment)" == "true" ]
+then
   export URL="$(node /root/.novajs/assignment.js)"
   echo "URL: $URL"
   git clone --depth=1 "$URL" .
