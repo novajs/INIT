@@ -8,7 +8,17 @@ if [ ! "$(cat .delete-me-to-regen-assignment)" == "true" ]
 then
   export URL="$(node /root/.novajs/assignment.js)"
   echo "URL: $URL"
-  git clone --depth=1 "$URL" .
+
+  echo "git clone"
+  git clone --depth=1 "$URL" STAGING
+
+  # include hidden files
+  echo "stage files"
+  cp -rv STAGING/. ./
+
+  echo "deleted staging"
+  rm -r STAGING
+
   echo "true" > .delete-me-to-regen-assignment
 else
   echo "Already Downloaded Assignment"
