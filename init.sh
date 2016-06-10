@@ -4,7 +4,7 @@ echo "Grabbing Assignment Files"
 echo "ID: $ASSIGNMENTID"
 
 pushd "/workspace"
-git clone "$(node /root/assignment.js)"
+git clone --depth=1 "$(node /root/assignment.js)"
 popd
 
 echo "Spawning supervisord to watch over cloud9 process."
