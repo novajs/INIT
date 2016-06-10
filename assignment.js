@@ -7,7 +7,7 @@
 const http = require('http');
 
 http.get({
-   host: '127.0.0.1',
+   host: '172.17.0.1',
    port: 8000,
    path: '/v1/assignments/by-id/'+process.env.ASSIGNMENTID
 }, response => {
