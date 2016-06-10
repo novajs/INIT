@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 echo "Grabbing Assignment Files"
-# nodejs code here.
+echo "ID: $ASSIGNMENTID"
 
-echo "Grabbing USER files."
-# nodejs code here.
+pushd "/workspace"
+git clone "$(node /root/assignment.js)"
+popd
 
 echo "Spawning supervisord to watch over cloud9 process."
 supervisord -c "/etc/supervisor/supervisord.conf"
