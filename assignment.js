@@ -1,14 +1,31 @@
 /**
- * FETCH ALL THE THINGS.
+ * Assignment Fetcher
+ * 
+ * @author Jared Allard <jaredallard@outlook.com>
+ * @license MIT
+ * @version 1.0.0
  **/
 
 'use strict';
 
 const http = require('http');
+const url  = require('url')
+
+let HOST, 
+    PORT;
+    
+// Check for docker container link.
+let backend_string = process.env.BACKEND_1_PORT;
+let backend_url    = url.parse(db_string);
+
+if(backend_string) {
+   HOST = db_url.hostname;
+   PORT = db_url.port;
+}
 
 http.get({
-   host: '172.17.0.1',
-   port: 8080,
+   host: HOST || '172.17.0.1',
+   port: PORT || 8080,
    path: '/v1/assignments/by-id/'+process.env.ASSIGNMENTID
 }, response => {
    // Continuously update stream with data
