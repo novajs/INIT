@@ -16,12 +16,12 @@ let HOST,
     
 // Check for docker container link.
 let backend_string = process.env.BACKEND_1_PORT;
-let backend_url    = url.parse(db_string);
+let backend_url    = url.parse(backend_string);
 
 if(backend_string) {
   console.log('I: Found Backend on', backend_string);
-  HOST = db_url.hostname;
-  PORT = db_url.port;
+  HOST = backend_url.hostname;
+  PORT = backend_url.port;
 }
 
 http.get({
