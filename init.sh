@@ -26,7 +26,7 @@ else
   echo "I: Already Downloaded Assignment"
 fi
 
-cd /root
+cd /cloud9
 
 echo "I: Spawing PM2"
 pm2 start --name cloud9 server.js -- -p 80 -a -w "/workspace"
