@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Sourcing NVM"
+. ~/.nvm/nvm.sh;
+
 echo "Grabbing Assignment Files"
 echo "ID: $ASSIGNMENTID"
 
