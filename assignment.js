@@ -8,7 +8,7 @@ const http = require('http');
 
 http.get({
    host: '172.17.0.1',
-   port: 8000,
+   port: 8080,
    path: '/v1/assignments/by-id/'+process.env.ASSIGNMENTID
 }, response => {
    // Continuously update stream with data
