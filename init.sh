@@ -8,22 +8,22 @@ if [ ! -f /workspace/.delete-me-to-regen-assignment ]; then
   export URL="$(node /root/.novajs/assignment.js)"
   echo "URL: $URL"
 
-  echo "git clone"
+  echo "I: git clone"
   git clone --depth=1 "$URL" STAGING
 
   # include hidden files
-  echo "stage files"
+  echo "I: stage files"
   cp -rv STAGING/. ./
 
-  echo "deleted staging"
+  echo "I: deleted staging"
   rm -r STAGING
 
   echo "true" > .delete-me-to-regen-assignment
 else
-  echo "Already Downloaded Assignment"
+  echo "I: Already Downloaded Assignment"
 fi
 
 cd /root
 
-echo "Spawning supervisord to watch over cloud9 process."
-supervisord -c "/etc/supervisor/supervisord.conf"
+echo "I: Spawing PM2"
+pm2 start --name cloud9 server.js -- -p 80 -a -w "/workspace"
