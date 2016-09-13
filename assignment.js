@@ -19,7 +19,6 @@ let backend_string = process.env.BACKEND_1_PORT;
 let backend_url    = url.parse(backend_string);
 
 if(backend_string) {
-  console.log('I: Found Backend on', backend_string);
   HOST = backend_url.hostname;
   PORT = backend_url.port;
 }
