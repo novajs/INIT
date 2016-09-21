@@ -26,6 +26,11 @@ else
   echo "I: Already Downloaded Assignment"
 fi
 
+# Tell API that we have X IP
+IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0)
+echo "IP: ${IP}"
+echo ${IP} > /tmp/rancher-ip
+
 cd /cloud9
 
 echo "I: Spawing PM2"
