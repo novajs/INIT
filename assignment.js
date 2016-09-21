@@ -8,7 +8,7 @@
 
 'use strict';
 
-const http = require('http');
+const https = require('https');
 const url  = require('url')
 
 let HOST, 
@@ -20,12 +20,11 @@ let backend_url    = url.parse(backend_string);
 
 if(backend_string) {
   HOST = backend_url.hostname;
-  PORT = backend_url.port;
 }
 
-http.get({
-   host: HOST || '172.17.0.1',
-   port: PORT || 8080,
+https.get({
+   host: HOST || 'api.tritonjs.com',
+   port: 443,
    path: '/v1/assignments/by-id/'+process.env.ASSIGNMENTID
 }, response => {
    // Continuously update stream with data
