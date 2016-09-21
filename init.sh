@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Give Rancher time?
+sleep 2
+
 echo "Sourcing NVM"
 . ~/.nvm/nvm.sh;
 
