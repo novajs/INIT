@@ -36,7 +36,7 @@ echo "IP: ${IP}"
 echo ${IP} > /tmp/rancher-ip
 echo "Auth: ${POST_AUTH}"
 
-if [[ "${IP}" == "" ]]; then
+if [ "${IP}" == "" ]; then
   IP="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 fi
 
