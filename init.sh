@@ -44,7 +44,7 @@ echo "I: Using Local IP because failed to connect to rancher."
 echo "IP: ${IP}"
 
 curl http://api.tritonjs.com/v1/workspaces/containerpostboot \
- -d '{ "auth": "${POST_AUTH}", "ip": "${IP}" }' \
+ -d "{ \"auth\": \"${POST_AUTH}\", \"ip\": \"${IP}\" }" \
  -H 'Content-Type: application/json'
 
 
