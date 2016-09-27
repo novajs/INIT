@@ -1,6 +1,6 @@
 /**
  * Assignment Fetcher
- * 
+ *
  * @author Jared Allard <jaredallard@outlook.com>
  * @license MIT
  * @version 1.0.0
@@ -11,9 +11,9 @@
 const https = require('https');
 const url  = require('url')
 
-let HOST, 
+let HOST,
     PORT;
-    
+
 // Check for docker container link.
 let backend_string = process.env.BACKEND_1_PORT;
 let backend_url    = url.parse(backend_string);

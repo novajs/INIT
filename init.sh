@@ -3,10 +3,10 @@
 # Give Rancher time?
 sleep 3
 
-echo "Sourcing NVM"
+echo "I: Sourcing NVM"
 . ~/.nvm/nvm.sh;
 
-echo "Grabbing Assignment Files"
+echo "I: Grabbing Assignment Files"
 echo "ID: $ASSIGNMENTID"
 
 cd /workspace
@@ -30,9 +30,23 @@ else
 fi
 
 # Tell API that we have X IP
+echo "I: Informing IDE of our IP."
 IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0)
 echo "IP: ${IP}"
 echo ${IP} > /tmp/rancher-ip
+echo "Auth: ${POST_AUTH}"
+
+if [[ "${IP}" == "" ]]; then
+  IP="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
+fi
+
+echo "I: Using Local IP because failed to connect to rancher."
+echo "IP: ${IP}"
+
+curl http://api.tritonjs.com/v1/workspaces/containerpostboot \
+ -d '{ "auth": "${POST_AUTH}", "ip": "${IP}" }' \
+ -H 'Content-Type: application/json'
+
 
 cd /cloud9
 
