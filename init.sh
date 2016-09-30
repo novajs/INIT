@@ -34,14 +34,14 @@ echo "Auth: ${POST_AUTH}"
 IP=""
 while [ -z "$IP" ]
 do
-  IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0)
-  echo "IP: ${IP}"
-  echo ${IP} > /tmp/rancher-ip
+  IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0 2>/dev/null)
   echo "I: Waiting for IP, got: '${IP}'"
   sleep 1
 done
 
-curl http://api.tritonjs.com/v1/workspaces/containerpostboot \
+echo ${IP} > /tmp/rancher-ip
+
+curl https://api.tritonjs.com/v1/workspaces/containerpostboot \
  -d "{ \"auth\": \"${POST_AUTH}\", \"ip\": \"${IP}\" }" \
  -H 'Content-Type: application/json'
 
