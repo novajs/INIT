@@ -31,17 +31,18 @@ fi
 
 # Tell API that we have X IP
 echo "I: Informing IDE of our IP."
-IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0)
-echo "IP: ${IP}"
-echo ${IP} > /tmp/rancher-ip
 echo "Auth: ${POST_AUTH}"
 
-if [ -z "$IP" ]; then
-  IP="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
-fi
 
-echo "I: Using Local IP because failed to connect to rancher."
-echo "IP: ${IP}"
+IP=""
+while [ -z "$IP" ]
+do
+  IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0)
+  echo "IP: ${IP}"
+  echo ${IP} > /tmp/rancher-ip
+  echo "I: Waiting for IP, got: '${IP}'"
+  sleep 1
+done
 
 curl http://api.tritonjs.com/v1/workspaces/containerpostboot \
  -d "{ \"auth\": \"${POST_AUTH}\", \"ip\": \"${IP}\" }" \
