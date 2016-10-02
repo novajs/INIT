@@ -49,4 +49,4 @@ curl https://api.tritonjs.com/v1/workspaces/containerpostboot \
 cd /cloud9
 
 echo "I: Spawing PM2"
-pm2 start --no-daemon --name cloud9 server.js -- -p 80 -l 0.0.0.0 -a : -w "/workspace" --collab
+pm2 start --no-daemon --name cloud9 server.js -- -p 80 -l 0.0.0.0 -a : -w "/workspace" --collab --setting-path "/root/.c9-settings"
