@@ -45,8 +45,11 @@ curl https://api.tritonjs.com/v1/workspaces/containerpostboot \
  -d "{ \"auth\": \"${POST_AUTH}\", \"ip\": \"${IP}\" }" \
  -H 'Content-Type: application/json'
 
+echo "I: Fixing Collab on NFS"
+rm /workspace/.c9/collab.db /root/.c9/collab.db # Fix old and possibly stale link.
+ln -s /root/.c9/collab.db /workspace/.c9/collab.db
 
 cd /cloud9
 
 echo "I: Spawing PM2"
-pm2 start --no-daemon --name cloud9 server.js -- -p 80 -l 0.0.0.0 -a : -w "/workspace" --collab --setting-path "/root/.c9-settings"
+pm2 start --no-daemon --name cloud9 server.js -- -p 80 -l 0.0.0.0 -a : -w "/workspace" --collab
