@@ -41,6 +41,7 @@ done
 
 echo ${IP} > /tmp/rancher-ip
 
+echo "I: Got "
 curl https://api.tritonjs.com/v1/workspaces/containerpostboot \
  -d "{ \"auth\": \"${POST_AUTH}\", \"ip\": \"${IP}\" }" \
  -H 'Content-Type: application/json'
