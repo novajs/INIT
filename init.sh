@@ -36,7 +36,7 @@ while [ -z "$IP" ]
 do
   PROPOSEDIP=$(curl http://rancher-metadata/latest/self/container/ips/0 2>/dev/null)
   
-  if [[ "${PROPOSEDIP}" != "Not found" ]] then
+  if [[ "${PROPOSEDIP}" != "Not found" ]]; then
     IP="${PROPOSEDIP}"
   fi
   
