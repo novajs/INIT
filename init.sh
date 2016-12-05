@@ -34,7 +34,7 @@ echo "Auth: ${POST_AUTH}"
 IP=""
 while [ -z "$IP" ]
 do
-  IP=$(curl http://rancher-metadata/2015-12-19/self/container/ips/0 2>/dev/null)
+  IP=$(curl http://rancher-metadata/latest/self/container/ips/0 2>/dev/null)
   echo "I: Waiting for IP, got: '${IP}'"
   sleep 1
 done
