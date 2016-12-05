@@ -34,8 +34,13 @@ echo "Auth: ${POST_AUTH}"
 IP=""
 while [ -z "$IP" ]
 do
-  IP=$(curl http://rancher-metadata/latest/self/container/ips/0 2>/dev/null)
-  echo "I: Waiting for IP, got: '${IP}'"
+  PROPOSEDIP=$(curl http://rancher-metadata/latest/self/container/ips/0 2>/dev/null)
+  
+  if [[  "${PROPOSEDIP}" != "Not found" ]]; then
+    IP = "${PROPOSEDIP}"
+  fi
+  
+  echo "I: Waiting for IP, got: '${PROPOSEDIP}'"
   sleep 1
 done
 
