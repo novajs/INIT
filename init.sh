@@ -37,7 +37,7 @@ do
   PROPOSEDIP=$(curl http://rancher-metadata/latest/self/container/ips/0 2>/dev/null)
   
   if [[  "${PROPOSEDIP}" != "Not found" ]]; then
-    IP = "${PROPOSEDIP}"
+    IP="${PROPOSEDIP}"
   fi
   
   echo "I: Waiting for IP, got: '${PROPOSEDIP}'"
